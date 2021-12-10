@@ -36,20 +36,18 @@ const verticalTotal = directions.reduce((total, current) => {
 const newTotal = directions.reduce(
   (accArr, current, i) => {
     const [direction, num] = current;
-    const [horizontalPosition, depth, currentAim] = accArr;
-    switch (direction) {
-      case 'down':
-        return [horizontalPosition, depth, currentAim + num];
-      case 'up':
-        return [horizontalPosition, depth, currentAim - num];
-      case 'forward':
-        return [horizontalPosition + num, depth + currentAim * num, currentAim];
-      default:
-        return accArr;
+    const [currentHorizontal, currentDepth, currentAim] = accArr;
+    if (direction === 'down') {
+      return [currentHorizontal, currentDepth, currentAim + num];
+    }
+    if (direction === 'up') {
+      return [currentHorizontal, currentDepth, currentAim - num];
+    }
+    if (direction === 'forward') {
+      return [currentHorizontal + num, currentAim * num, currentAim];
     }
   },
   [0, 0, 0]
-);
+); // horizontal, depth, aim
 
 console.log('newTotal', newTotal);
-console.log(newTotal[0] * newTotal[1]);

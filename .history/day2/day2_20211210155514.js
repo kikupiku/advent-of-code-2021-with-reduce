@@ -9,12 +9,12 @@ const input = fs.readFileSync(`${__dirname}/input.txt`).toString();
 
 const directions = input
   .split('\n')
-  .filter((datum) => Boolean(datum))
   .map((pair) =>
     pair
       .split(' ')
       .map((datum, index) => (index === 1 ? parseInt(datum) : datum))
-  );
+  )
+  .pop();
 
 const horizontalTotal = directions.reduce((total, current) => {
   if (current[0] === 'forward') {
@@ -36,20 +36,20 @@ const verticalTotal = directions.reduce((total, current) => {
 const newTotal = directions.reduce(
   (accArr, current, i) => {
     const [direction, num] = current;
-    const [horizontalPosition, depth, currentAim] = accArr;
-    switch (direction) {
-      case 'down':
-        return [horizontalPosition, depth, currentAim + num];
-      case 'up':
-        return [horizontalPosition, depth, currentAim - num];
-      case 'forward':
-        return [horizontalPosition + num, depth + currentAim * num, currentAim];
-      default:
-        return accArr;
+    if (i < 3) {
+      console.log('current: ', current, direction, num);
+    }
+    if (current[0] === 'down') {
+      return [accArr[0], accArr[1], accArr[2] + num];
+    }
+    if (current[0] === 'up') {
+      return [accArr[0], accArr[1], accArr[2] - num];
+    }
+    if (current[0] === 'forward') {
+      return [accArr[0] + num, accArr[2] * num, accArr[2]];
     }
   },
   [0, 0, 0]
-);
+); // horizontal, depth, aim
 
 console.log('newTotal', newTotal);
-console.log(newTotal[0] * newTotal[1]);

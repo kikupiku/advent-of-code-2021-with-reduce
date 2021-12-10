@@ -43,7 +43,7 @@ const newTotal = directions.reduce(
       case 'up':
         return [horizontalPosition, depth, currentAim - num];
       case 'forward':
-        return [horizontalPosition + num, depth + currentAim * num, currentAim];
+        return [horizontalPosition + num, currentAim * num, currentAim];
       default:
         return accArr;
     }
