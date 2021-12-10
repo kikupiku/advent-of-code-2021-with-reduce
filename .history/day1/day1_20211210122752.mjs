@@ -7,4 +7,12 @@ const __dirname = path.dirname(__filename);
 
 const input = fs.readFileSync(`${__dirname}/input.txt`).toString();
 
-console.log(input);
+const readings = input.split('\n').map(reading => parseInt(reading, 10));
+
+const depthIncreases = (data) => {
+  for (let i = 0; i < data.length; i++) {
+    if ()
+  }
+}
+
+console.log(readings);
