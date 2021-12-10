@@ -1,0 +1,1 @@
+fetch('input.txt').then
