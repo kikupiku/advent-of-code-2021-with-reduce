@@ -19,8 +19,8 @@ const depthIncreases = (data) => {
   return total;
 };
 
-const depthIncreasesWithReduce = (data) => {
-  return data.reduce((total, reading, i, array) => {
+const depthIncreasesWithReduce = (readings) => {
+  const result =  readings.reduce((total, reading, i, array) => {
     if (i > 0 && reading > array[i - 1]) {
       return total + 1;
     }
@@ -35,7 +35,7 @@ const readingTriads = readings.map((reading, index, readings) => {
 });
 
 console.log(depthIncreases(readings));
-console.log(depthIncreasesWithReduce(readings));
+console.log(depthIncreasesWithReduce);
 
 console.log(depthIncreases(readingTriads));
 console.log(depthIncreasesWithReduce(readingTriads));

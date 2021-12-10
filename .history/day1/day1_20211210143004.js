@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 
 const input = fs.readFileSync(`${__dirname}/input.txt`).toString();
 
-const readings = input.split('\n').map((reading) => parseInt(reading, 10));
+const readings = input.split('\n').map(reading => parseInt(reading, 10));
 
 const depthIncreases = (data) => {
   let total = 0;
@@ -17,25 +17,21 @@ const depthIncreases = (data) => {
     }
   }
   return total;
-};
+}
 
-const depthIncreasesWithReduce = (data) => {
-  return data.reduce((total, reading, i, array) => {
-    if (i > 0 && reading > array[i - 1]) {
-      return total + 1;
-    }
-    return total;
-  }, 0);
-};
+const depthIncreasesWithReduce = (readings) => {
+  readings.reduce((total, reading, i, array) => {
+  if (i > 0 && reading > array[i - 1]) {
+    return total + 1;
+  }
+  return total;
+}, 0)}
 
 const readingTriads = readings.map((reading, index, readings) => {
-  if (index !== readings.length - 1 && index !== readings.length - 2) {
+  if (index !== readings.length -1 && index !== readings.length -2) {
     return reading + readings[index + 1] + readings[index + 2];
   }
 });
 
 console.log(depthIncreases(readings));
-console.log(depthIncreasesWithReduce(readings));
-
-console.log(depthIncreases(readingTriads));
-console.log(depthIncreasesWithReduce(readingTriads));
+console.log(depthIncreasesWithReduce)

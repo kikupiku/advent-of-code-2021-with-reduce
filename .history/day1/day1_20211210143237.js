@@ -20,7 +20,7 @@ const depthIncreases = (data) => {
 };
 
 const depthIncreasesWithReduce = (data) => {
-  return data.reduce((total, reading, i, array) => {
+  const result = data.reduce((total, reading, i, array) => {
     if (i > 0 && reading > array[i - 1]) {
       return total + 1;
     }
